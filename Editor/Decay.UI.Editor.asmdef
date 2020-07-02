@@ -1,0 +1,18 @@
+{
+    "name": "pippinmole.UI.Editor",
+    "references": [
+        "GUID:22822b1c3e532134c94d71b7ba6afba4",
+        "GUID:6546d7765b4165b40850b3667f981c26"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
