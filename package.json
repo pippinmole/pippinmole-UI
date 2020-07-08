@@ -13,5 +13,8 @@
     "name": "pippin_mole",
     "email": "",
     "url": "https://github.com/pippinmole/"
+  },
+  "dependencies": {
+	"com.unity.render-pipelines.high-definition": 7.3.1
   }
 }
