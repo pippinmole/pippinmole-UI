@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Decay.Utilities;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 
 [ExecuteAlways]
 public class BillboardWorldSpaceUI : MonoBehaviour {
