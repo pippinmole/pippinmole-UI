@@ -15,11 +15,11 @@ public class HorizontalDropdown : MonoBehaviour {
 
     public event Action<int> onValueChanged;
 
-    private int value;
+    private int val;
 
     public int Value {
-        get => this.value;
-        set => this.value = Mathf.Clamp(value, 0, this.options.Count - 1);
+        get => this.val;
+        set => this.val = Mathf.Clamp(value, 0, this.options.Count - 1);
     }
 
     private void Awake() {
@@ -51,7 +51,7 @@ public class HorizontalDropdown : MonoBehaviour {
     }
 
     public void PreviousOption() {
-        this.Value = this.Value == 0 ? this.options.Count -1: this.Value - 1;
+        this.Value = this.Value == 0 ? this.options.Count - 1 : this.Value - 1;
         
         if ( this.onValueChanged != null )
             this.onValueChanged.Invoke(this.Value);
@@ -66,6 +66,6 @@ public class HorizontalDropdown : MonoBehaviour {
     }
 
     public void RefreshShownValue() {
-        this.valueText.SetText(this.options[this.Value]);
+		this.valueText.SetText(this.options.Count == 0 ? "" : this.options[this.Value]);
     }
 }
