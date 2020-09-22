@@ -17,11 +17,11 @@ namespace pippinmole.UI {
             }
 
             dropdown.SetHeaderText(name);
-            dropdown.onValueChanged.AddListener((x) => setSetting(x));
+            dropdown.onValueChanged += (x) => setSetting(x);
 
             dropdown.ClearOptions();
             dropdown.AddOptions(options);
-            dropdown.value = getSetting();
+            dropdown.Value = getSetting();
             dropdown.RefreshShownValue();
         }
         public static void RegisterSlider(string name, GameObject prefab, Transform parent, float minValue, float maxValue, string suffix, Func<float> getSetting, Action<float> setSetting) {
@@ -60,8 +60,8 @@ namespace pippinmole.UI {
                 "Off",
                 "On"
             });
-            toggle.onValueChanged.AddListener((x) => setSetting(x == 1));
-            toggle.value = getSetting() ? 1 : 0;
+			toggle.onValueChanged += (x) => setSetting(x == 1);
+            toggle.Value = getSetting() ? 1 : 0;
         }
 
         public static void RegisterKeymap(GameObject prefab, Transform parent, Func<Keybind> getSetting, Action<KeyCode> setSetting) {

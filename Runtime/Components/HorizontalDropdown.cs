@@ -1,57 +1,71 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HorizontalDropdown : TMPro.TMP_Dropdown {
+public class HorizontalDropdown : MonoBehaviour {
 
-    [SerializeField] private TMPro.TMP_Text _headerText;
-    [SerializeField] private Button _nextOption;
-    [SerializeField] private Button _previousOption;
+    [SerializeField] private TMPro.TMP_Text headerText;
 
-    protected override void Awake() {
-        base.Awake();
+    [SerializeField] private TMPro.TMP_Text valueText;
+    [SerializeField] private Button nextOptionButton;
+    [SerializeField] private Button previousOptionButton;
 
-        this._nextOption?.onClick.AddListener(this.NextOption);
-        this._previousOption?.onClick.AddListener(this.PreviousOption);
+    [SerializeField] private List<string> options = new List<string>();
+
+    public event Action<int> onValueChanged;
+
+    private int value;
+
+    public int Value {
+        get => this.value;
+        set => this.value = Mathf.Clamp(value, 0, this.options.Count - 1);
     }
 
-    protected override void Start() {
-        base.Start();
+    private void Awake() {
+        if ( this.nextOptionButton != null ) this.nextOptionButton.onClick.AddListener(this.NextOption);
+        if ( this.previousOptionButton != null ) this.previousOptionButton.onClick.AddListener(this.PreviousOption);
+
+        this.onValueChanged += (x) => this.RefreshShownValue();
     }
 
-#if UNITY_EDITOR
-    protected override void OnValidate() {
-        base.OnValidate();
-    }
-    protected override void Reset() {
-        base.Reset();
-    }
-#endif
-
-    protected override void OnDisable() {
-        base.OnDisable();
-    }
-    protected override void OnDestroy() {
-        base.OnDestroy();
-
-        this._nextOption.onClick = null;
-        this._previousOption.onClick = null;
+    private void OnEnable() {
+        this.RefreshShownValue();
     }
 
-    public void SetHeaderText(string text) => this._headerText?.SetText(text);
+    private void OnDestroy() {
+        this.nextOptionButton.onClick = null;
+        this.previousOptionButton.onClick = null;
+    }
+
+    public void SetHeaderText(string text) {
+        if ( this.headerText != null )
+            this.headerText.SetText(text);
+    }
+
     public void NextOption() {
-        if (this.value == this.options.Count - 1) {
-            this.value = 0;
-        } else {
-            this.value++;
-        }
+        this.Value = this.Value == this.options.Count - 1 ? 0 : this.Value + 1;
+
+        if ( this.onValueChanged != null )
+            this.onValueChanged.Invoke(this.Value);
     }
+
     public void PreviousOption() {
-        if (this.value == 0) {
-            this.value = this.options.Count + 1;
-        } else {
-            this.value--;
-        }
+        this.Value = this.Value == 0 ? this.options.Count -1: this.Value - 1;
+        
+        if ( this.onValueChanged != null )
+            this.onValueChanged.Invoke(this.Value);
+    }
+
+    public void ClearOptions() {
+        this.options = new List<string>();
+    }
+
+    public void AddOptions(List<string> opt) {
+        this.options = opt;
+    }
+
+    public void RefreshShownValue() {
+        this.valueText.SetText(this.options[this.Value]);
     }
 }

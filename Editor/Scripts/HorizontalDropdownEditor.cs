@@ -8,14 +8,14 @@ namespace pippinmole.UI.Editor {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("_headerText"));
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("_nextOption"));
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("_previousOption"));
+            //EditorGUI.BeginChangeCheck();
+            //EditorGUILayout.PropertyField(this.serializedObject.FindProperty("_headerText"));
+            //EditorGUILayout.PropertyField(this.serializedObject.FindProperty("_nextOption"));
+            //EditorGUILayout.PropertyField(this.serializedObject.FindProperty("_previousOption"));
 
-            if (EditorGUI.EndChangeCheck()) {
-                this.serializedObject.ApplyModifiedProperties();
-            }
+            //if (EditorGUI.EndChangeCheck()) {
+            //    this.serializedObject.ApplyModifiedProperties();
+            //}
         }
     }
 }
