@@ -12,10 +12,6 @@ namespace pippinmole.UI {
             base.Awake();
         }
 
-        protected override void OnSetMenuVisiblity(EState state) {
-            
-        }
-
         protected override void SetMenuStateInternal(EState state) {
             this.transform.DOLocalMove(state == EState.Visible ? this.VisiblePosition : this.HiddenPosition, this.PositionDuration);
         }

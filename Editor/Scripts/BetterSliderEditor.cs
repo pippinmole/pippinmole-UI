@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.UI;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace pippinmole.UI.Editor {
     [CustomEditor(typeof(BetterSlider))]

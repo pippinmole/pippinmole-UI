@@ -64,7 +64,7 @@ namespace pippinmole.UI {
             toggle.Value = getSetting() ? 1 : 0;
         }
 
-        public static void RegisterKeymap(GameObject prefab, Transform parent, Func<Keybind> getSetting, Action<KeyCode> setSetting) {
+        public static void RegisterKeymap(GameObject prefab, Transform parent, Func<IKeybind> getSetting, Action<KeyCode> setSetting) {
             var keymapper = RegisterUI<UIKeymapperController>(prefab, parent);
 
             if (keymapper == null) return;

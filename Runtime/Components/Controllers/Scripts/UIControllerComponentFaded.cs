@@ -27,9 +27,5 @@ namespace pippinmole.UI {
             this._canvasGroup.DOFade(state == EState.Hidden ? 0f : 1f, this._fadeTime);
             this._canvasGroup.blocksRaycasts = state == EState.Hidden ? false : true;
         }
-
-        protected override void OnSetMenuVisiblity(EState state) {
-
-        }
     }
 }

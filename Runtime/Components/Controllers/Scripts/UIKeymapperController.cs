@@ -16,9 +16,9 @@ namespace pippinmole.UI {
         [SerializeField] private TMPro.TMP_Text _keybindTitleText;
         [SerializeField] private TMPro.TMP_Text _keybindButtonText;
 
-        private Keybind keybind;
+        private IKeybind keybind;
 
-        public void Setup(Keybind bind) {
+        public void Setup(IKeybind bind) {
             this.keybind = bind;
 
             this.RefreshUIText();

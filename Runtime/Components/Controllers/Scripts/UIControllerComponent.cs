@@ -3,9 +3,9 @@ using Decay.InputSystem;
 using UnityEngine;
 
 namespace pippinmole.UI {
-    public abstract class UIControllerComponent : MonoBehaviour, IInputBlocker {
+    public abstract class UIControllerComponent : MonoBehaviour, IUIController, IInputBlocker {
 
-        public static List<IInputBlocker> InputBlockers = new List<IInputBlocker>();
+        public static readonly List<IInputBlocker> InputBlockers = new List<IInputBlocker>();
 
         public EState State { get; private set; }
         public enum EState {
@@ -40,7 +40,6 @@ namespace pippinmole.UI {
             this.SetMenuStateInternal(state);
 
             this.State = state;
-            this.OnSetMenuVisiblity(state);
 
             if (this.BlocksInput) {
                 if (state == EState.Hidden) {
@@ -58,7 +57,5 @@ namespace pippinmole.UI {
         protected virtual void SetMenuStateInternal(EState state) {
             this.gameObject.SetActive(state == EState.Visible);
         }
-
-        protected abstract void OnSetMenuVisiblity(EState state);
     }
 }
